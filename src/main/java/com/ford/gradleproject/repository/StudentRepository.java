@@ -7,10 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
-public interface StudentRepository extends JpaRepository<Student,Integer> {
-
-//    public List<Student> findAll();
-
+@Repository
+public interface StudentRepository extends JpaRepository<Student,Long> {
 
 }
