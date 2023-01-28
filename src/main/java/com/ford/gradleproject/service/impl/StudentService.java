@@ -3,12 +3,10 @@ package com.ford.gradleproject.service.impl;
 import com.ford.gradleproject.model.Student;
 import com.ford.gradleproject.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -20,4 +18,17 @@ public class StudentService {
     }
 
 
+    public void addNewStudent(Student student) {
+
+
+        Optional<Student> studentByEmail = studentRepository.findStudentByEmail(student.getEmail());
+
+        if(studentByEmail.isPresent()){
+            throw new IllegalStateException("Email Taken");
+        }
+
+        System.out.println(student);
+
+        studentRepository.save(student);
+    }
 }

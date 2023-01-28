@@ -4,9 +4,7 @@ import com.ford.gradleproject.model.Student;
 import com.ford.gradleproject.service.impl.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping(value ="/getallstudent", produces = MediaType.APPLICATION_JSON_VALUE) //in video, he did not give value
+    @GetMapping( produces = MediaType.APPLICATION_JSON_VALUE) //in video, he did not give value
     public  List<Student> getStudents(){
         return studentService.getStudents();
     }
@@ -28,5 +26,9 @@ public class StudentController {
     }
 
 
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public void registerNewStudent(@RequestBody Student student){
+        studentService.addNewStudent(student);
+    }
 
 }
