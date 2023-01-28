@@ -31,4 +31,9 @@ public class StudentController {
         studentService.addNewStudent(student);
     }
 
+    @DeleteMapping(path = "{studentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteStudent(@PathVariable("studentId") Long id) {
+        studentService.deleteStudent(id);
+    }
+
 }
